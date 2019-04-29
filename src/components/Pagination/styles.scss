@@ -1,0 +1,18 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+    ul {
+        list-style-type: none;
+        display: flex;
+        li{
+            padding: 10px;
+            border-radius: 3px;
+            margin-left: 5px;
+            border: 1px solid;
+            background-color: #e8e8e8;
+        }
+        .active{
+            background-color: #797979;
+        }
+    }
+}

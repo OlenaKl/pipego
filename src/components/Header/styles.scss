@@ -1,0 +1,10 @@
+.header{
+    background-color: #25292c;
+    display: flex;
+    align-content: flex-start;
+    flex-direction: row;
+    height: 50px;
+    .logo{
+        max-width: 150px
+    }
+}
