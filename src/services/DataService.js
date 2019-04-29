@@ -59,4 +59,16 @@ export default class DataService {
         const response = await UtilityService.deleteRequest(url);
         return response;
     }
+
+    static async addOrganization(person) {
+        const url = `/v1/persons`;
+        const response = await UtilityService.postRequest(url, person);
+        return response;
+    }
+
+    static async addClient(person) {
+        const url = `/v1/persons`;
+        const response = await UtilityService.postRequest(url, person);
+        return response;
+    }
 }

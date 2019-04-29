@@ -74,8 +74,8 @@ export default class ContactsList extends Component {
         });
     }
 
-    addPerson = () => {
-
+    addPersonToggle = () => {
+        this.setState({ addPersonVisible: !this.state.addPersonVisible })
     } 
 
     hideSearchOnFocus = (event) => {
@@ -124,8 +124,6 @@ export default class ContactsList extends Component {
                 {this.state.modalVisible && <PopUpRead person={this.state.person}
                     onClose={this.openModal} />}
 
-                {this.state.addPersonVisible && <PopUpWrite
-                    onClose={this.openModal} />}
             </div>
         )
     }
@@ -134,8 +132,13 @@ export default class ContactsList extends Component {
         return (
             <div className="containerContacts">
                 <h2>People's list</h2>
+                <button className="addPerson" onClick={this.addPersonToggle}>Add Person</button>
+                
                 {this.renderSearch()}
                 {!this.state.searchActive && this.renderResults()}
+
+                {this.state.addPersonVisible && <PopUpWrite
+                    onClose={this.addPersonToggle} />}
             </div>
         )
     }

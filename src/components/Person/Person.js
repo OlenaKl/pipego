@@ -26,7 +26,7 @@ export default class Person extends Component {
                         <img src={noPhoto} alt="" />
                     </div>
                 </div>
-                <a heref="#" className="delete" onClick={() => this.props.delete(person.id)}>X</a>
+                <button className="delete" onClick={() => this.props.delete(person.id)}>X</button>
             </div>
         )
     }

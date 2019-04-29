@@ -47,7 +47,7 @@ const PopUpRead = (props) => {
                     </div>
                 </div>
                 <div className="footer">
-                    <a htef="#" onClick={onClose} className="button">Back</a>
+                    <button onClick={onClose} className="button">Back</button>
                 </div>
             </div>
             <div className="overlay" />
