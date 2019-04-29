@@ -3,10 +3,10 @@ import { baseURL, apiKey } from './config';
 
 let _rqNo = 1;
 export default class UtilityService {
-    static async getRequest(endpoint: string, limit?: string): Object {
+    static async getRequest(endpoint: string): object {
         const rqNo = _rqNo++;
-        console.log(`rq[${rqNo}] getRequest ${endpoint}`);
-        const url = `${baseURL}${endpoint}?api_token=${apiKey}'&limit='${limit}`
+        //console.log(`rq[${rqNo}] getRequest ${endpoint}`);
+        const url = `${baseURL}${endpoint}&api_token=${apiKey}`;
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -19,9 +19,9 @@ export default class UtilityService {
         return text ? JSON.parse(text) : {};
     }
 
-    static async postRequest(endpoint: string): Object {
+    static async postRequest(endpoint: string, body: object = {}): object {
         const rqNo = _rqNo++;
-        console.log(`rq[${rqNo}] postRequest ${endpoint}`, body);
+        console.log(`rq[${rqNo}] postRequest ${endpoint}`);
         const url = `${baseURL}${endpoint}?api_token=${apiKey}`;
         const response = await fetch(url, {
             method: 'POST',
@@ -37,15 +37,14 @@ export default class UtilityService {
 
     }
 
-    static async putRequest(endpoint: string): Object {
+    static async putRequest(endpoint: string, body: object = {}): object {
         const rqNo = _rqNo++;
-        console.log(`rq[${rqNo}] authPutRequest ${endpoint}`, body);
+        console.log(`rq[${rqNo}] authPutRequest ${endpoint}`);
 
         const url = `${baseURL}${endpoint}?api_token=${apiKey}`
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
-                Authorization: `${UserStore.tokenType} ${UserStore.accessToken}`,
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
@@ -56,9 +55,9 @@ export default class UtilityService {
         return text ? JSON.parse(text) : {};
     }
 
-    static async deleteRequest(endpoint: string): Object {
+    static async deleteRequest(endpoint: string, body: object = {}): object {
         const rqNo = _rqNo++;
-        console.log(`rq[${rqNo}] authDeleteRequest ${endpoint}`, body);
+        console.log(`rq[${rqNo}] authDeleteRequest ${endpoint}`);
         const url = `${baseURL}${endpoint}?api_token=${apiKey}`
         
         const response = await fetch(url, {

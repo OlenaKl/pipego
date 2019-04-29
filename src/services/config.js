@@ -1,2 +1,2 @@
-export const baseURL = "https://rodolfocompany-860a35.pipedrive.com";
-export const apiKey = "479f2bc15058867bb7dcfdaade60fe25d27c55f4";
+export const baseURL = "https://bananza-b9c3d7.pipedrive.com";
+export const apiKey = "29be847cf5a397d2eb22014793196da5e1d4695d";
