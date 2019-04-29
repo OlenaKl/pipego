@@ -15,11 +15,11 @@ export default class Person{
     order?:number
   ) {
     this.id = id;
-    this.email = !!email[0].value ? email[0].value : email;
+    this.email = typeof email === 'string' ?  email : email[0].value;
     this.firstName = firstName;
     this.lastName = lastName;
     this.fullName = fullName;
-    this.phone = !!phone[0].value ? phone[0].value: phone;
+    this.phone = typeof phone === 'string' ? phone : phone[0].value;
     this.assistant = assistant;
     this.group = group;
     this.organization = organization;

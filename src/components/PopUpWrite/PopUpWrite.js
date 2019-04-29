@@ -51,7 +51,7 @@ export default class PopUpWrite extends Component {
             first_name: this.state.firstName,
             last_name: this.state.lastName,
             phone: this.state.phone,
-            email: this.state.group,
+            email: this.state.email,
             org_id: organizationId
         }
         return await DataService.addClient(body);

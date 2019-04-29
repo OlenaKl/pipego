@@ -48,6 +48,7 @@ export default class DataService {
         const url = `/v1/persons/find?term=%2F${term}&start=0`
         const response = await UtilityService.getRequest(url);
         let clients = [];
+        console.log(response)
         if(!!response.data) {
             clients = response.data.map(clientDeserialize);
         } 
@@ -63,6 +64,8 @@ export default class DataService {
     static async addClient(person) {
         const url = `/v1/persons`;
         const response = await UtilityService.postRequest(url, person);
+        
+        console.log(response)
         return response;
     }
 
