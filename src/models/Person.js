@@ -1,18 +1,18 @@
 // @flow
 
-var counter = 0;
 export default class Person{
   constructor(
     id: number,
-    email: Array,
+    email?: Array,
     fullName: string,
-    phone: Array,
+    phone?: Array,
     organization: string,
     organizationId: Object,
     firstName?: string,
     lastName?: string,
     group?: string,
-    assistant?: string
+    assistant?: string,
+    order?:number
   ) {
     this.id = id;
     this.email = !!email[0].value ? email[0].value : email;
@@ -24,6 +24,6 @@ export default class Person{
     this.group = group;
     this.organization = organization;
     this.organizationAddress = organizationId.address;
-    this.index = counter++;
+    this.order = order;
   }
 }

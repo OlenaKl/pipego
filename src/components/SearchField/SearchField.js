@@ -38,9 +38,19 @@ export default class Search extends Component {
         });
     }
 
+    deletePerson = async (id) => {
+        const list = this.state.list;
+        const indexToDelete = this.state.list.findIndex(item => item.id === id);
+        list.splice(indexToDelete, 1);
+        this.setState({ list });
+        await DataService.deleteClient(id);
+    }
+
     search = async (event) => {
-        const response = await DataService.searchForClient(event.target.value);
-        this.setState({ list: response });
+        if (event.target.value.length > 2) {
+            const response = await DataService.searchForClient(event.target.value);
+            this.setState({ list: response });
+        }
     }
 
     renderResults = () => {
@@ -48,6 +58,7 @@ export default class Search extends Component {
             <div className="results">
                 {this.state.list.length > 0 ? this.state.list.map((person) => (
                     <Person
+                        delete={this.deletePerson}
                         openModal={this.openModal}
                         person={person}
                         data-id={person.name}

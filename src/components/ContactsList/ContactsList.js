@@ -35,12 +35,12 @@ export default class ContactsList extends Component {
             startFetch = index * this.state.limit;
         }
         const response = await DataService.fetchClients(startFetch, this.state.limit)
-        if (start > 9 && this.state.links.indexOf(response.nextStart / this.state.limit) === -1) {
+        if (start > 9 && response.nextStart && this.state.links.indexOf(response.nextStart / this.state.limit) === -1) {
             links.push(response.nextStart / this.state.limit);
         }
         this.setState({
             links,
-            list: response.list,
+            list: response.list.sort(this.sortPersons),
             activePage: response.nextStart,
             next: response.next
         });
@@ -48,23 +48,24 @@ export default class ContactsList extends Component {
 
     deletePerson = async (id) => {
         const list = this.state.list;
-        const indexToDelete = this.state.list.find(item => item.id === id);
+        const indexToDelete = this.state.list.findIndex(item => item.id === id);
         list.splice(indexToDelete, 1);
         this.setState({ list });
         await DataService.deleteClient(id);
     }
 
+    sortPersons = (a, b) => a.order - b.order;
 
-
-    sortPersons = (a, b) => a.index - b.index;
-
-    setNewOrder = (newIndex, oldIndex) => {
+    setNewOrder = async (newIndex, oldIndex) => {
         const list = this.state.list;
-        let itemToCSwap = list[oldIndex].index;
-        list[oldIndex].index = list[newIndex].index;
-        list[newIndex].index = itemToCSwap;
+        let itemToSwap = list[oldIndex].order;
+        list[oldIndex].order = list[newIndex].order;
+        list[newIndex].order = itemToSwap;
         list.sort(this.sortPersons);
         this.setState({ list });
+
+        await DataService.updateClientOrder(list[newIndex].id, list[newIndex].order);
+        await DataService.updateClientOrder(list[oldIndex].id,list[oldIndex].order);
     }
 
     openModal = (person) => {
@@ -131,9 +132,10 @@ export default class ContactsList extends Component {
     render() {
         return (
             <div className="containerContacts">
-                <h2>People's list</h2>
-                <button className="addPerson" onClick={this.addPersonToggle}>Add Person</button>
-                
+                <div className="header-contacts">
+                    <h2>People's list</h2>
+                    <button className="addClient" onClick={this.addPersonToggle}>Add Person</button>
+                </div>
                 {this.renderSearch()}
                 {!this.state.searchActive && this.renderResults()}
 

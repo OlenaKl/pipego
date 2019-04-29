@@ -7,7 +7,8 @@ import './styles.scss';
 export default class Person extends Component {
     static propTypes = {
         person: PropTypes.object,
-        deletePerson: PropTypes.func
+        delete: PropTypes.func,
+        openModal: PropTypes.func
     }
 
     render() {
@@ -19,7 +20,7 @@ export default class Person extends Component {
                         <p className="personName">{person.fullName}</p>
                         <div className="company">
                             <img src={office} alt="" />
-                            <p className="personName">{person.organization}</p>
+                        <p className="personName">{person.organization}</p>
                         </div>
                     </div>
                     <div className="photo">

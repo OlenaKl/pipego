@@ -1,7 +1,23 @@
 .containerContacts {
-    padding: 20px
-}
-
-.people{
-    margin-top: 20px;
+    padding: 20px;
+    .header-contacts{
+        display: flex;
+        align-items: center;
+        padding-bottom: 20px;
+    }
+    .people{
+        margin-top: 20px;
+    }
+    
+    .addClient{
+        width: 120px;
+        height: 40px;
+        border-radius: 3px;
+        background-color: #43c35e;
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        font-size: 16px;
+        margin: 0 20px 0 20px;
+    }
 }

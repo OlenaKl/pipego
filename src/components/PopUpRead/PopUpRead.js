@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import noPhoto from '../../resources/no-photo.png';
 import './styles.scss';
 
@@ -7,7 +8,6 @@ const PopUpRead = (props) => {
         person,
         onClose
     } = props;
-
     return (
         <div className="popup">
             <div className="popupContent">
@@ -43,7 +43,7 @@ const PopUpRead = (props) => {
                     </div>
                     <div className="container">
                         <div className="label">Location:</div>
-                        <div className="labelInfo">{person.location}</div>
+                        <div className="labelInfo">{person.organizationAddress}</div>
                     </div>
                 </div>
                 <div className="footer">
@@ -53,6 +53,11 @@ const PopUpRead = (props) => {
             <div className="overlay" />
         </div>
     )
+}
+
+PopUpRead.propTypes = {
+    person: PropTypes.object,
+    onClose: PropTypes.func
 }
 
 export default PopUpRead;
